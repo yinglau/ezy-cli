@@ -1,7 +1,11 @@
 const cmd = require('commander')
+const createProj = require('./tasks/create-proj-file')
 
-cmd.option('--init', 'init the project with dependencies')
+cmd
+  .command('init <name>', '')
+  .description('init a project and install dependencies!')
+  .action((name, options) => {
+    createProj(name)
+  })
 
 cmd.parse(process.argv)
-
-console.log('xxx')

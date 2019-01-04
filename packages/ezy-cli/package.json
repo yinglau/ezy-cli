@@ -11,5 +11,11 @@
     "ezy": "index.js"
   },
   "author": "winson",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.19.0",
+    "cross-spawn": "^6.0.5",
+    "invariant": "^2.2.4"
+  }
 }
