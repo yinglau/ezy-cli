@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const cmd = require('commander')
 const inquirer = require('inquirer')
 
