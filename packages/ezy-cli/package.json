@@ -12,7 +12,7 @@
   },
   "author": "winson",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
     "cross-spawn": "^6.0.5",
