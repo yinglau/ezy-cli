@@ -1,11 +1,10 @@
 const path = require('path')
-const chalk = require('chalk')
-const invariant = require('invariant')
 const { error } = require('../utils/errorHandle')
-const { execSync, exec } = require('child_process')
+const { exec } = require('child_process')
 const ora = require('ora')
 const shell = require('shelljs')
 
+const { checkGit, checkNpm } = require('../utils/checkEnv')
 const BOILERPLATE_REPOS = require('../constants/boilerplate')
 
 async function downBoilerplateFromGit () {
@@ -57,38 +56,6 @@ function installDependenices () {
       }
     })
   })
-}
-
-function canUseGit () {
-  try {
-    execSync('git --version', { stdio: 'ignore' })
-    return true
-  } catch (e) {
-    return false
-  }
-}
-
-function canUseNpm () {
-  try {
-    execSync('npm --version', { stdio: 'ignore' })
-    return true
-  } catch (e) {
-    return false
-  }
-}
-
-function checkGit () {
-  invariant(
-    canUseGit(),
-    chalk.white.bgRed(`Sure you have already install Git.`)
-  )
-}
-
-function checkNpm () {
-  invariant(
-    canUseNpm(),
-    chalk.white.bgRed(`Sure you have already install Npm.`)
-  )
 }
 
 module.exports = downBoilerplateFromGit

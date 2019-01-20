@@ -4,12 +4,8 @@ const fs = require('fs')
 const chalk = require('chalk')
 const path = require('path')
 const invariant = require('invariant')
-const { error } = require('../utils/errorHandle')
-
-function createProject (name) {
-  createPath(name)
-  createPkg(name)
-}
+const ora = require('ora')
+// const { error } = require('../utils/errorHandle')
 
 function createPath (name) {
   invariant(
@@ -19,35 +15,41 @@ function createPath (name) {
   fs.mkdirSync(name)
 }
 
-function createPkg (name) {
-  try {
-    fs.accessSync(path.join(process.cwd(), name), fs.constants.R_OK | fs.constants.W_OK)
+function createPkg (projectName = null) {
+  const createPkgSpinner = ora('init the package.json...').start()
+  return new Promise((resolve, reject) => {
+    const name = projectName || 'projectName'
     ejs.renderFile(
       path.join(__dirname, '../templates/package.json.ejs'),
       { name },
       (err, str) => {
         if (err) {
-          error(err)
-          process.exit(1)
+          // error(err)
+          // process.exit(1)
+          createPkgSpinner.fail()
+          reject(err)
         }
-        // fs.writeFileSync(path.join(process.cwd(), name, 'package.json'), str + os.EOL, 'utf8')
         fs.writeFile(
-          path.join(process.cwd(), name, 'package.json'),
+          path.join(process.cwd(), 'package.json'),
           str + os.EOL,
           'utf8',
           (err) => {
             if (err) {
-              error(err)
-              process.exit(1)
+              // error(err)
+              // process.exit(1)
+              createPkgSpinner.fail()
+              reject(err)
             }
+            createPkgSpinner.succeed()
+            resolve()
           }
         )
       }
     )
-  } catch (e) {
-    error(e)
-    process.exit(1)
-  }
+  })
 }
 
-module.exports = createProject
+module.exports = {
+  createPath,
+  createPkg
+}
