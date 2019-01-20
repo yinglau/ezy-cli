@@ -20,7 +20,7 @@ function createPkg (projectName = null) {
   return new Promise((resolve, reject) => {
     const name = projectName || 'projectName'
     ejs.renderFile(
-      path.join(__dirname, '../templates/package.json.ejs'),
+      path.join(__dirname, '../templates/web/package.json.ejs'),
       { name },
       (err, str) => {
         if (err) {
@@ -49,7 +49,36 @@ function createPkg (projectName = null) {
   })
 }
 
+function initProjectBoilerplate () {
+  const initBoilerplateSpinner = ora('init the boilerplate...').start()
+  copyFile(path.join(__dirname, '../templates/web/boilerplate'), process.cwd(), initBoilerplateSpinner)
+  initBoilerplateSpinner.succeed()
+}
+
+function copyFile (src, dist, spinner) {
+  const files = fs.readdirSync(src)
+  files.map(item => {
+    const _src = path.join(src, item)
+    const _dist = path.join(dist, item)
+    fs.stat(_src, async (err, stats) => {
+      if (err) {
+        spinner.fail()
+        throw new Error(err)
+      }
+      if (stats.isFile()) {
+        const read = fs.createReadStream(_src)
+        const write = fs.createWriteStream(_dist)
+        read.pipe(write)
+      } else {
+        fs.mkdirSync(_dist)
+        copyFile(_src, _dist, spinner)
+      }
+    })
+  })
+}
+
 module.exports = {
   createPath,
-  createPkg
+  createPkg,
+  initProjectBoilerplate
 }

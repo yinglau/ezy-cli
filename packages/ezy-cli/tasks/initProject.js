@@ -1,5 +1,5 @@
 const { checkNpm } = require('../utils/checkEnv')
-const { createPkg } = require('./createProject')
+const { createPkg, initProjectBoilerplate } = require('./createProject')
 const { exec } = require('child_process')
 const ora = require('ora')
 // const fs = require('fs')
@@ -8,6 +8,7 @@ const getDependencies = require('../constants/npmDependencies')
 
 async function initProject (projType) {
   await createPkg()
+  await initProjectBoilerplate()
   await installDependencies(projType)
 }
 
@@ -25,7 +26,6 @@ async function installDependencies (projType) {
     default:
       break
   }
-  // return Promise.all([installDeps(deps.dependencies), installDevDeps(deps.devDependencies)])
   return new Promise((resolve, reject) => {
     const installSpinner = ora('installing the dependencies...').start()
     Promise.all([installDeps(deps.dependencies), installDevDeps(deps.devDependencies)])

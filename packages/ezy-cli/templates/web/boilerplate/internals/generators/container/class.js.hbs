@@ -1,0 +1,44 @@
+/**
+ * {{ properCase name }} container
+ * author: {{ author.name }}
+ * email: {{ author.email }}
+ */
+
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import injectSaga from 'utils/injectSaga'
+import injectReducer from 'utils/injectReducer'
+import { createStructuredSelector } from 'reselect'
+import PropTypes from 'prop-types'
+
+import { defaultAction } from './actions'
+import reducer from './reducer'
+import saga from './saga'
+import { getDefaultState } from './selectors'
+
+class {{ properCase name }} extends Component {
+  render () {
+    return (
+      <div>This is {{ properCase name }}!</div>
+    )
+  }
+}
+
+const mapStateToProps = createStructuredSelector({
+  defaultState: getDefaultState()
+})
+const mapDispatchToProps = (dispatch) => ({
+  dispatch,
+  defaultAction: (val) => dispatch(defaultAction(val))
+})
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps)
+const withReducer = injectReducer({ key: '{{ camelCase name }}', reducer })
+const withSaga = injectSaga({ key: '{{ camelCase name }}', saga })
+
+{{ properCase name }}.propTypes = {
+  dispatch: PropTypes.func.isRequired
+}
+
+export default compose(withReducer, withSaga, withConnect)({{ properCase name }})
