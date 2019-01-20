@@ -1,3 +1,6 @@
 module.exports = {
-    "extends": "standard"
-};
+    "extends": "standard",
+    "rules": {
+      "generator-star-spacing": 0
+    }
+}
