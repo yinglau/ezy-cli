@@ -41,17 +41,22 @@ function initPrompt () {
     if (answers.project_type === 'Web') {
       return inquirer.prompt([
         {
-          type: 'input',
+          type: 'expand',
           name: 'use_boilerplate',
           message: 'Whether use boilerplate or not?',
-          default: 'y/n',
-          validate: (value) => {
-            const pass = value.match(/^[yn]$/)
-            if (pass) {
-              return true
+          default: 'n',
+          choices: [
+            {
+              key: 'y',
+              name: 'Yes, use boilerplate.',
+              value: 'y'
+            },
+            {
+              key: 'n',
+              name: 'No, unuse boilerplate.',
+              value: 'n'
             }
-            return 'Just type y or n'
-          }
+          ]
         }
       ]).then(subAns => {
         if (subAns.use_boilerplate === 'y') {
