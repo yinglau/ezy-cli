@@ -4,7 +4,7 @@ import { compose } from 'redux'
 import injectSaga from 'utils/injectSaga'
 import injectReducer from 'utils/injectReducer'
 import { createStructuredSelector } from 'reselect'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 import { defaultAction } from './actions'
 import saga from './saga'
@@ -14,12 +14,7 @@ import { getDefaultState } from './selectors'
 import Header from 'components/Header'
 import styles from './style.css'
 
-type Props = {
-  defaultAction: () => {},
-  homeDefaultState: string
-}
-
-class HomePage extends Component<Props> {
+class HomePage extends Component {
   componentDidMount () {
 
   }
@@ -57,8 +52,10 @@ const withReducer = injectReducer({ key: 'homePage', reducer })
 const withConnect = connect(mapStateToProps, mapDispatchToProps)
 
 // containers propsTypes
-// HomePage.propTypes = {
-//   dispatch: PropTypes.func.isRequired
-// }
+HomePage.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  defaultAction: PropTypes.func,
+  homeDefaultState: PropTypes.isRequired
+}
 
 export default compose(withReducer, withSaga, withConnect)(HomePage)

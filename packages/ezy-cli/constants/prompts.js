@@ -53,7 +53,7 @@ function initPrompt () {
             },
             {
               key: 'n',
-              name: 'No, unuse boilerplate.',
+              name: 'No, not use boilerplate.',
               value: 'n'
             }
           ]

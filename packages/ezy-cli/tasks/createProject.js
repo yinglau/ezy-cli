@@ -40,6 +40,18 @@ function createPkg (projectName = null) {
               createPkgSpinner.fail()
               reject(err)
             }
+            const ctn = fs.readFileSync(path.join(process.cwd(), 'package.json'))
+            const scripts = `
+  "scripts": {
+    "test": "cross-env NODE_ENV=test jest --coverage",
+    "start": "cross-env NODE_ENV=development node ./server/index.js",
+    "lint": "npm run lint:js",
+    "lint:js": "eslint -- .",
+    "lint:fix": "eslint --fix -- .",
+    "g": "plop --plopfile internals/generators/index.js"
+  },`
+            const newCtn = ctn.toString().replace(/("main":\s\S+,)/, `$1${scripts}`)
+            fs.writeFileSync(path.join(process.cwd(), 'package.json'), newCtn, 'utf8')
             createPkgSpinner.succeed()
             resolve()
           }
