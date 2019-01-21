@@ -8,7 +8,6 @@ module.exports = {
   "plugins": [
     "redux-saga",
     "react",
-    "flowtype",
   ],
   rules: {
     "no-console": 0,
