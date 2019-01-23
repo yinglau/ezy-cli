@@ -21,6 +21,7 @@ const packages = {
     },
     'devDependencies': {
       '@babel/core': '7.2.2',
+      'axios': '0.18.0',
       '@babel/plugin-proposal-class-properties': '7.2.1',
       '@babel/plugin-syntax-dynamic-import': '7.2.0',
       '@babel/plugin-transform-modules-commonjs': '7.2.0',
