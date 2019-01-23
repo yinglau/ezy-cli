@@ -2,6 +2,7 @@ const packages = {
   'Web': {
     'dependencies': {
       '@babel/polyfill': '7.0.0',
+      'axios': '0.18.0',
       'connected-react-router': '4.5.0',
       'history': '4.7.2',
       'hoist-non-react-statics': '3.0.1',
@@ -21,7 +22,6 @@ const packages = {
     },
     'devDependencies': {
       '@babel/core': '7.2.2',
-      'axios': '0.18.0',
       '@babel/plugin-proposal-class-properties': '7.2.1',
       '@babel/plugin-syntax-dynamic-import': '7.2.0',
       '@babel/plugin-transform-modules-commonjs': '7.2.0',
@@ -60,7 +60,10 @@ const packages = {
       'webpack': '4.27.1',
       'webpack-cli': '3.1.2',
       'webpack-dev-middleware': '3.4.0',
-      'webpack-hot-middleware': '2.24.3'
+      'webpack-hot-middleware': '2.24.3',
+      'image-webpack-loader': '4.6.0',
+      'svg-url-loader': '2.3.2',
+      'url-loader': '1.1.2'
     }
   }
 }
