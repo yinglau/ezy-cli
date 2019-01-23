@@ -1,19 +1,19 @@
 import React from 'react'
-import { Switch, Link, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
+import './style.css'
 import HomePage from '../HomePage'
+import Header from '../../components/Header'
 
 export default function App () {
   return (
     <div>
-      <div>this is header</div>
-      <div>
-        <Link to={'/'}>home</Link><br />
+      <Header />
+      <div className='container'>
+        <Switch>
+          <Route exact path={'/'} component={HomePage} />
+        </Switch>
       </div>
-      <Switch>
-        <Route exact path={'/'} component={HomePage} />
-      </Switch>
-      <div>this is footer</div>
     </div>
   )
 }

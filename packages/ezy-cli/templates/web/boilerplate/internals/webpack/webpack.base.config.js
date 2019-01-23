@@ -27,11 +27,17 @@ module.exports = (opts) => ({
         test: /\.css$/,
         exclude: /node_modules/,
         use: [
-          'style-loader',
+          {
+            loader: 'style-loader',
+            options: {
+              hmr: false, //若`css-loader`开启`modules`，css-module热更新会失败，把`style-loader`的`hmr`关闭，则正常
+            }
+          },
           {
             loader: 'css-loader',
             options: {
-
+              modules: true, // 开启css模块化
+              localIdentName: '[local]__[hash:base64:8]',
             }
           }
         ],

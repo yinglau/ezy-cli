@@ -10,6 +10,8 @@ import history from 'utils/history'
 import App from 'containers/App'
 import configureStore from './configureStore'
 
+import 'statics/normalize.css'
+
 const MOUNT_NODE = document.getElementById('root')
 
 const initialState = {}

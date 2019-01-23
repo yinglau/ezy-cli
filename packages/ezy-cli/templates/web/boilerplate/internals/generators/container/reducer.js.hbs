@@ -9,14 +9,14 @@ import {
   DEFAULT
 } from './constants'
 
-const initialState = fromJS({
+export const initialState = fromJS({
   defaultState: 'default state'
 })
 
 function {{ camelCase name }}Reducer (state = initialState, action) {
   switch (action.type) {
     case DEFAULT:
-      return state.set('defaultState', action.val)
+      return state.set('defaultState', action.defaultState)
     default:
       return state
   }

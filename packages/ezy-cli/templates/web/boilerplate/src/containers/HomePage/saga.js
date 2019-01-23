@@ -1,17 +1,23 @@
-import { takeEvery } from 'redux-saga/effects'
+import { takeEvery, call, put } from 'redux-saga/effects'
+import * as api from '../../services'
 import {
-  DEFAULT
+  GET_NEWS,
+  GET_NEWS_SUCCESS,
+  GET_NEWS_FAIL
 } from './actions'
 
-function * defaultFlow (action) {
+function* defaultFlow (action) {
   try {
-    yield () => {}
     console.log('run saga action.type', action.type)
-  } catch (e) {
+    const data = yield call(api.getNews, action.payload)
+    yield put({ type: GET_NEWS_SUCCESS, data: data.data })
+    console.log('run saga action.type', GET_NEWS_SUCCESS)
+  } catch (error) {
+    yield put({ type: GET_NEWS_FAIL, error })
     console.log('run saga error')
   }
 }
 
-export default function * saga () {
-  yield takeEvery(DEFAULT, defaultFlow)
+export default function* saga () {
+  yield takeEvery(GET_NEWS, defaultFlow)
 }

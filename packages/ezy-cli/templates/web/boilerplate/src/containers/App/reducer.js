@@ -1,8 +1,8 @@
 import { fromJS } from 'immutable'
 
-const GLOBAL_CHGTITLE = 'APP/GLOBAL_CHGTITLE'
+export const GLOBAL_CHGTITLE = 'APP/GLOBAL_CHGTITLE'
 
-const initialState = fromJS({
+export const initialState = fromJS({
   title: 'default title'
 })
 

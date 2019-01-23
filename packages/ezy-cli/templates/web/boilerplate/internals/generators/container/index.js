@@ -24,6 +24,12 @@ module.exports = {
         name: 'wantLoadable',
         message: 'Do you want to load resources asynchronously?',
         default: false,
+      },
+      {
+        type: 'confirm',
+        name: 'wantTestSuit',
+        message: 'Do you want to create test suit?',
+        default: false,
       }
     ],
     actions: data => {
@@ -56,6 +62,22 @@ module.exports = {
           path: `${path.join(__dirname, '../../../src/containers/{{properCase name}}/Loadable.js')}`,
           templateFile: `./container/loadable.js.hbs`,
         });
+      }
+
+      if (data.wantTestSuit) {
+        const suitActions = [
+          {
+            type: 'add',
+            path: `${path.join(__dirname, '../../../src/containers/{{properCase name}}/__test__/index.test.js')}`,
+            templateFile: `./container/test/index.test.js.hbs`,
+          },
+          {
+            type: 'add',
+            path: `${path.join(__dirname, '../../../src/containers/{{properCase name}}/__test__/reducer.test.js')}`,
+            templateFile: `./container/test/reducer.test.js.hbs`,
+          }
+        ]
+        actions = [...suitActions, ...actions];
       }
 
       return actions;

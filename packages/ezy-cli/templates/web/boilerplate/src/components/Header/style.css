@@ -1,0 +1,21 @@
+.head {
+  box-sizing: border-box;
+  height: 100px;
+  background: black;
+}
+.logo {
+  width: 60px;
+  height: 100px;
+  background: url(./sources/react.svg) center center no-repeat;
+  display: inline-block;
+  text-indent: -9999px;
+  vertical-align: middle;
+}
+.title {
+  display: inline-block;
+  vertical-align: middle;
+  color: #fff;
+  font-size: 30px;
+  font-family: 'Microsoft YaHei';
+  margin-left: 40px;
+}

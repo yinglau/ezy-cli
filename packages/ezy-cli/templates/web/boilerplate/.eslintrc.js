@@ -13,6 +13,7 @@ module.exports = {
     "no-console": 0,
     'redux-saga/no-yield-in-race': 2,
     'redux-saga/yield-effects': 2,
+    'generator-star-spacing': 0,
   },
   settings: {
     react: {
