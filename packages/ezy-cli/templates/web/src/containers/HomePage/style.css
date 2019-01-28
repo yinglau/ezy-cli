@@ -1,5 +1,6 @@
 .tabs {
   margin-bottom: 20px;
+  background: green;
 }
 .tabs span {
   display: inline-block;

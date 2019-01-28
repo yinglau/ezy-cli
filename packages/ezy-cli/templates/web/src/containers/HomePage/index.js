@@ -70,6 +70,8 @@ class HomePage extends Component {
           ? (<div>loading...</div>)
           : this.renderListBox(homeNews.data)
         }
+        <div className={styles.test}>
+        </div>
       </div>
     )
   }

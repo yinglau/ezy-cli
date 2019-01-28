@@ -61,10 +61,30 @@ function createPkg (projectName = null) {
   })
 }
 
-function initProjectBoilerplate () {
+function initProjectBoilerplate (projType) {
+  let start
+  let pay
+
+  start = new Date().getTime()
+
   const initBoilerplateSpinner = ora('init the boilerplate...').start()
-  copyFile(path.join(__dirname, '../templates/web/boilerplate'), process.cwd(), initBoilerplateSpinner)
-  initBoilerplateSpinner.succeed()
+  return new Promise((resolve, reject) => {
+    try {
+      const templates = [
+        path.join(__dirname, '../templates/web')
+      ]
+      if (projType === 'Web') {
+        copyFile(templates[0], process.cwd(), initBoilerplateSpinner)
+      }
+      pay = new Date().getTime() - start
+      initBoilerplateSpinner.text = `complete init the boilerplate [${chalk.green(pay + 'ms')}]`
+      initBoilerplateSpinner.succeed()
+      resolve()
+    } catch (e) {
+      initBoilerplateSpinner.fail()
+      reject(e)
+    }
+  })
 }
 
 function copyFile (src, dist, spinner) {
@@ -72,20 +92,29 @@ function copyFile (src, dist, spinner) {
   files.map(item => {
     const _src = path.join(src, item)
     const _dist = path.join(dist, item)
-    fs.stat(_src, async (err, stats) => {
-      if (err) {
-        spinner.fail()
-        throw new Error(err)
-      }
-      if (stats.isFile()) {
-        const read = fs.createReadStream(_src)
-        const write = fs.createWriteStream(_dist)
-        read.pipe(write)
-      } else {
-        fs.mkdirSync(_dist)
-        copyFile(_src, _dist, spinner)
-      }
-    })
+    const stats = fs.lstatSync(_src)
+    if (stats.isFile()) {
+      const read = fs.createReadStream(_src)
+      const write = fs.createWriteStream(_dist)
+      read.pipe(write)
+    } else {
+      fs.mkdirSync(_dist)
+      copyFile(_src, _dist, spinner)
+    }
+    // fs.stat(_src, async (err, stats) => {
+    //   if (err) {
+    //     spinner.fail()
+    //     throw new Error(err)
+    //   }
+    //   if (stats.isFile()) {
+    //     const read = fs.createReadStream(_src)
+    //     const write = fs.createWriteStream(_dist)
+    //     read.pipe(write)
+    //   } else {
+    //     fs.mkdirSync(_dist)
+    //     copyFile(_src, _dist, spinner)
+    //   }
+    // })
   })
 }
 

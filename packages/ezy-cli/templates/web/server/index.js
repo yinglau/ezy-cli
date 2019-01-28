@@ -9,6 +9,7 @@ const logger = require('./logger');
 const webpackCfg = require('../internals/webpack/webpack.dev.config');
 const app = express();
 const compiler = webpack(webpackCfg);
+const ip_address = require('../utils/ip')
 
 const devMiddleware = webpackDevMiddleware(compiler, {
   logLevel: 'warn',
@@ -34,26 +35,6 @@ app.get('*', (req, res) => {
 
 const host = 'localhost';
 const port = '8000';
-// const gPort = (async () => await getPort())();
-
-// gPort.then(port => {
-//   // Start app.
-//   app.listen(port, host, async err => {
-//     if (err) {
-//       return logger.error(err.message);
-//     }
-
-//     logger.success(
-//       `
-//         Application has already start
-//         open you browser and input http://${host}:${port}
-//       `
-//     );
-
-//   });
-// }).catch(e => {
-//   logger.error(e.message);
-// });
 
 // Start app.
 app.listen(port, host, async err => {
@@ -65,6 +46,7 @@ app.listen(port, host, async err => {
 ========================================================
       Application has already start
       open you broswer and input http://${host}:${port}
+      your network ip address http://${ip_address}:${port}
 ========================================================
 `
   );
