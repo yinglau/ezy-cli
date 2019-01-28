@@ -26,7 +26,7 @@ function createPkg (projectName = null) {
         if (err) {
           // error(err)
           // process.exit(1)
-          createPkgSpinner.fail()
+          createPkgSpinner.fail('fail create package.json')
           reject(err)
         }
         fs.writeFile(
@@ -37,7 +37,7 @@ function createPkg (projectName = null) {
             if (err) {
               // error(err)
               // process.exit(1)
-              createPkgSpinner.fail()
+              createPkgSpinner.fail('fail create package.json')
               reject(err)
             }
             const ctn = fs.readFileSync(path.join(process.cwd(), 'package.json'))
@@ -77,11 +77,10 @@ function initProjectBoilerplate (projType) {
         copyFile(templates[0], process.cwd(), initBoilerplateSpinner)
       }
       pay = new Date().getTime() - start
-      initBoilerplateSpinner.text = `complete init the boilerplate [${chalk.green(pay + 'ms')}]`
-      initBoilerplateSpinner.succeed()
+      initBoilerplateSpinner.succeed(`complete init the boilerplate [${chalk.green(pay + 'ms')}]`)
       resolve()
     } catch (e) {
-      initBoilerplateSpinner.fail()
+      initBoilerplateSpinner.fail('fail init boilerplate')
       reject(e)
     }
   })
@@ -101,20 +100,6 @@ function copyFile (src, dist, spinner) {
       fs.mkdirSync(_dist)
       copyFile(_src, _dist, spinner)
     }
-    // fs.stat(_src, async (err, stats) => {
-    //   if (err) {
-    //     spinner.fail()
-    //     throw new Error(err)
-    //   }
-    //   if (stats.isFile()) {
-    //     const read = fs.createReadStream(_src)
-    //     const write = fs.createWriteStream(_dist)
-    //     read.pipe(write)
-    //   } else {
-    //     fs.mkdirSync(_dist)
-    //     copyFile(_src, _dist, spinner)
-    //   }
-    // })
   })
 }
 

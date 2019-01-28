@@ -1,4 +1,4 @@
-const { checkNpm } = require('../utils/checkEnv')
+const { checkNpm, checkGit } = require('../utils/checkEnv')
 const { initProjectBoilerplate } = require('./createProject')
 const { exec } = require('child_process')
 const fs = require('fs')
@@ -9,8 +9,26 @@ const ora = require('ora')
 // const error = require('../utils/errorHandle')
 
 async function initProject (projType) {
+  await initGit()
   await initProjectBoilerplate(projType)
   await installDependencies()
+}
+
+function initGit () {
+  checkGit()
+
+  return new Promise((resolve, reject) => {
+    const initGitSpinner = ora('init git...').start()
+    exec('git init', (err, stdout, stderr) => {
+      if (err) {
+        initGitSpinner.fail('check git env')
+        reject(err)
+      } else {
+        initGitSpinner.succeed('git already init')
+        resolve()
+      }
+    })
+  })
 }
 
 async function installDependencies () {
@@ -29,8 +47,7 @@ async function installDependencies () {
         reject(err)
       } else {
         pay = new Date().getTime() - start
-        installSpinner.text = `complete install dependencies [${chalk.green(pay + 'ms')}]`
-        installSpinner.succeed()
+        installSpinner.succeed(`complete install dependencies [${chalk.green(pay + 'ms')}]`)
         resolve()
       }
     })
