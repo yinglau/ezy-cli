@@ -1,67 +1,47 @@
 const { checkNpm } = require('../utils/checkEnv')
-const { createPkg, initProjectBoilerplate } = require('./createProject')
+const { initProjectBoilerplate } = require('./createProject')
 const { exec } = require('child_process')
+const fs = require('fs')
+const chalk = require('chalk')
+const invariant = require('invariant')
 const ora = require('ora')
 // const fs = require('fs')
-const getDependencies = require('../constants/npmDependencies')
 // const error = require('../utils/errorHandle')
 
 async function initProject (projType) {
-  await createPkg()
-  await initProjectBoilerplate()
-  await installDependencies(projType)
+  await initProjectBoilerplate(projType)
+  await installDependencies()
 }
 
-async function installDependencies (projType) {
+async function installDependencies () {
   checkNpm()
-  const types = ['Web', 'Mobile-Native']
-  let deps
-  switch (projType) {
-    case types[0]:
-      deps = getDependencies(types[0])
-      break
-    case types[1]:
-      deps = getDependencies(types[1])
-      break
-    default:
-      break
-  }
+  checkExistsPackage()
+
+  let start
+  let pay
+  start = new Date().getTime()
+
   return new Promise((resolve, reject) => {
     const installSpinner = ora('installing the dependencies...').start()
-    Promise.all([installDeps(deps.dependencies), installDevDeps(deps.devDependencies)])
-      .then((res) => {
-        if (res[0] === 'done' && res[1] === 'done') {
-          installSpinner.succeed()
-        }
-      })
-      .catch(e => {
+    exec('npm install', (err, stdout, stderr) => {
+      if (err) {
         installSpinner.fail()
-      })
-  })
-}
-
-function installDeps (pkgs) {
-  return new Promise((resolve, reject) => {
-    exec(`npm i --save ${pkgs.join(' ')}`, (err, stdout) => {
-      if (err) {
         reject(err)
       } else {
-        resolve('done')
+        pay = new Date().getTime() - start
+        installSpinner.text = `complete install dependencies [${chalk.green(pay + 'ms')}]`
+        installSpinner.succeed()
+        resolve()
       }
     })
   })
 }
 
-function installDevDeps (pkgs) {
-  return new Promise((resolve, reject) => {
-    exec(`npm i --save-dev ${pkgs.join(' ')}`, (err, stdout) => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve('done')
-      }
-    })
-  })
+function checkExistsPackage () {
+  invariant(
+    fs.existsSync('./package.json'),
+    chalk.white.bgRed('请检查是否存在package.json文件')
+  )
 }
 
 module.exports = initProject

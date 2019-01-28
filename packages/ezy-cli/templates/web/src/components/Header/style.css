@@ -1,7 +1,7 @@
 .head {
   box-sizing: border-box;
   height: 100px;
-  background: black;
+  background: grey;
 }
 .logo {
   width: 60px;
