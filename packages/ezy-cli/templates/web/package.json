@@ -20,7 +20,8 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "git pull --rebase && npm test"
+      "pre-push": "git pull --rebase && npm test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "lint-staged": {
@@ -60,6 +61,8 @@
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@commitlint/cli": "^7.4.0",
+    "@commitlint/config-conventional": "^7.3.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
