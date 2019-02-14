@@ -27,7 +27,7 @@
     "ora": "^3.0.0",
     "shelljs": "^0.8.3"
   },
-  "gitHead": "3727feeba2b53c0f031b36d4fcd51cdf2e6da7d8",
+  "gitHead": "934bef140b791079c6676053cf879eec2ca8e161",
   "keywords": [
     "react",
     "redux",
