@@ -31,6 +31,7 @@
   "keywords": [
     "react",
     "redux",
-    "react stacks creator"
+    "saga",
+    "selector"
   ]
 }
