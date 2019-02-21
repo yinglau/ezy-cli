@@ -70,11 +70,25 @@ module.exports = {
             type: 'add',
             path: `${path.join(__dirname, '../../../src/containers/{{properCase name}}/__test__/index.test.js')}`,
             templateFile: `./container/test/index.test.js.hbs`,
+            data: {
+              author: {
+                name: userinfo['user.name'],
+                email: userinfo['user.email']
+              }
+            },
+            abortOnFail: true
           },
           {
             type: 'add',
             path: `${path.join(__dirname, '../../../src/containers/{{properCase name}}/__test__/reducer.test.js')}`,
             templateFile: `./container/test/reducer.test.js.hbs`,
+            data: {
+              author: {
+                name: userinfo['user.name'],
+                email: userinfo['user.email']
+              }
+            },
+            abortOnFail: true
           }
         ]
         actions = [...suitActions, ...actions];

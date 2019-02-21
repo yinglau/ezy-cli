@@ -11,6 +11,12 @@ import { shallow } from 'enzyme'
 import { {{properCase name}} as Component} from '../'
 
 describe('test {{properCase name}}', () => {
+  {{#if isFunctional }}
+  it('{{properCase name}} has one div element', () => {
+    const wrapper = shallow(<Component />)
+    expect(wrapper.find('div')).toHaveLength(1)
+  })
+  {{else}}
   it('instance of {{properCase name}}', () => {
     const props = {
       dispatch: () => {}
@@ -19,4 +25,5 @@ describe('test {{properCase name}}', () => {
     const instance = wrapper.instance()
     expect(instance).toBeInstanceOf(Component)
   })
+  {{/if}}
 })
