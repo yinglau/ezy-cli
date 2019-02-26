@@ -3,6 +3,9 @@ const { error } = require('../utils/errorHandle')
 const { exec } = require('child_process')
 const ora = require('ora')
 const shell = require('shelljs')
+const fs = require('fs')
+const chalk = require('chalk')
+const invariant = require('invariant')
 
 const { checkGit, checkNpm } = require('../utils/checkEnv')
 const BOILERPLATE_REPOS = require('../constants/boilerplate')
@@ -22,8 +25,15 @@ async function downBoilerplateFromGit () {
   }
 }
 
+function checkExistsPackage () {
+  invariant(
+    fs.existsSync('./package.json'),
+    chalk.white.bgRed('请检查是否存在package.json文件')
+  )
+}
+
 function cloneRepos () {
-  const downBoilerplateSpiner = ora('clone source from git...').start()
+  const downBoilerplateSpiner = ora('clone boilerplate from git...').start()
   return new Promise((resolve, reject) => {
     exec(`git clone ${BOILERPLATE_REPOS}`, (err, stdout, stderr) => {
       if (err) {
@@ -42,6 +52,7 @@ function cloneRepos () {
 }
 
 function installDependenices () {
+  checkExistsPackage()
   const installDependenicesSpiner = ora('install the project dependencies...').start()
   return new Promise((resolve, reject) => {
     exec('npm install', err => {
