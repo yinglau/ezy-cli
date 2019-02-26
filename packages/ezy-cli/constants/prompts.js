@@ -1,7 +1,6 @@
 const inquirer = require('inquirer')
 
 const { createPath } = require('../tasks/createProject')
-const downBoilerplateFromGit = require('../tasks/downBoilerplate')
 const initProject = require('../tasks/initProject')
 
 function createPrompt (name, options) {
