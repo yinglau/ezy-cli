@@ -1,7 +1,6 @@
 const inquirer = require('inquirer')
 
 const { createPath } = require('../tasks/createProject')
-const downBoilerplateFromGit = require('../tasks/downBoilerplate')
 const initProject = require('../tasks/initProject')
 
 function createPrompt (name, options) {
@@ -38,34 +37,6 @@ function initPrompt () {
       choices: ['Web', 'Mobile-Native', 'Pc-Native']
     }
   ]).then(answers => {
-    if (answers.project_type === 'Web') {
-      return inquirer.prompt([
-        {
-          type: 'expand',
-          name: 'use_boilerplate',
-          message: 'Whether use boilerplate or not?',
-          default: 'n',
-          choices: [
-            {
-              key: 'y',
-              name: 'Yes, use boilerplate.',
-              value: 'y'
-            },
-            {
-              key: 'n',
-              name: 'No, not use boilerplate.',
-              value: 'n'
-            }
-          ]
-        }
-      ]).then(subAns => {
-        if (subAns.use_boilerplate === 'y') {
-          downBoilerplateFromGit(answers.project_name)
-        } else {
-          initProject(answers.project_type)
-        }
-      })
-    }
     initProject(answers.project_type)
   })
 }
