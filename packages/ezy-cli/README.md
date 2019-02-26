@@ -13,6 +13,5 @@ npm install -g ezy-cli
 ```js
 ezy create <project-name>
 cd <project-name>
-ezy init
 ```
 
