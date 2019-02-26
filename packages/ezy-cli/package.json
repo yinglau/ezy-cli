@@ -1,6 +1,6 @@
 {
   "name": "ezy-cli",
-  "version": "1.0.13-alpha.0",
+  "version": "1.0.25-alpha.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,12 @@
   "bin": {
     "ezy": "index.js"
   },
-  "author": "winson",
+  "repository": "yinglau/ezy",
+  "author": {
+    "name": "winson",
+    "email": "501285598@qq.com",
+    "url": "https://github.com/yinglau/ezy"
+  },
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.1",
@@ -21,5 +26,12 @@
     "invariant": "^2.2.4",
     "ora": "^3.0.0",
     "shelljs": "^0.8.3"
-  }
+  },
+  "gitHead": "934bef140b791079c6676053cf879eec2ca8e161",
+  "keywords": [
+    "react",
+    "redux",
+    "saga",
+    "selector"
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "name": "ezy-scripts",
-  "version": "1.0.2-alpha.2",
+  "version": "1.0.2-alpha.14",
   "description": "a scripts run tool",
   "author": "winson <501285598@qq.com>",
   "homepage": "https://github.com/yinglau/ezy-cli#readme",
@@ -19,5 +19,6 @@
   },
   "bugs": {
     "url": "https://github.com/yinglau/ezy-cli/issues"
-  }
+  },
+  "gitHead": "934bef140b791079c6676053cf879eec2ca8e161"
 }
