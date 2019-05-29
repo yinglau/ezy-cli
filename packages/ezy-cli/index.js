@@ -30,17 +30,17 @@ const pkg = require('./package.json')
 cmd.version(pkg.version)
 
 cmd
-  .command('create <name>')
-  .description('Create a project path')
+  .command('new <name>')
+  .description('Create a project')
   .action((name, options) => {
     createPrompt(name, options)
   })
 
-cmd
-  .command('init')
-  .description('Init the project and install dependencies!')
-  .action(() => {
-    initPrompt()
-  })
+// cmd
+//   .command('init')
+//   .description('Init the project and install dependencies!')
+//   .action(() => {
+//     initPrompt()
+//   })
 
 cmd.parse(process.argv)

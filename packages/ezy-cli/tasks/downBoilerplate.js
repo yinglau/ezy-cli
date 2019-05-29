@@ -8,13 +8,15 @@ const chalk = require('chalk')
 const invariant = require('invariant')
 
 const { checkGit, checkNpm } = require('../utils/checkEnv')
-const BOILERPLATE_REPOS = require('../constants/boilerplate')
+const BOILERPLATE = require('../constants/boilerplate')
 
 async function downBoilerplateFromGit () {
+  if (!arguments && !arguments[0]) return;
+
   checkGit()
   checkNpm()
 
-  await cloneRepos()
+  await cloneRepos(arguments[0])
   await installDependenices()
 
   try {
@@ -33,17 +35,19 @@ function checkExistsPackage () {
 }
 
 function cloneRepos () {
+  const projType = arguments[0]
   const downBoilerplateSpiner = ora('clone boilerplate from git...').start()
+
   return new Promise((resolve, reject) => {
-    exec(`git clone ${BOILERPLATE_REPOS}`, (err, stdout, stderr) => {
+    exec(`git clone ${BOILERPLATE[projType].git}`, (err, stdout, stderr) => {
       if (err) {
-        shell.rm('-rf', path.join(process.cwd(), 'react-stack'))
+        shell.rm('-rf', path.join(process.cwd(), `${BOILERPLATE[projType].name}`))
         downBoilerplateSpiner.fail()
         error(err)
         reject(err)
       } else {
-        shell.mv(path.join(process.cwd(), 'react-stack', '*'), './')
-        shell.rm('-rf', path.join(process.cwd(), 'react-stack'))
+        shell.mv(path.join(process.cwd(), `${BOILERPLATE[projType].name}`, '*'), './')
+        shell.rm('-rf', path.join(process.cwd(), `${BOILERPLATE[projType].name}`))
         downBoilerplateSpiner.succeed()
         resolve()
       }

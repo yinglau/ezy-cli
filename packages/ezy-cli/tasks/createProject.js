@@ -17,13 +17,17 @@ function createPath (name) {
 }
 
 async function initProjectBoilerplate (projType) {
-  switch (projType) {
-    case 'Web':
-      await downBoilerplateFromGit()
-      break
-    default:
-      break
-  }
+  await downBoilerplateFromGit(projType)
+  // switch (projType) {
+  //   case apptypes[0]:
+  //     await downBoilerplateFromGit()
+  //     break
+  //   case apptypes[1]:
+  //     await downBoilerplateFromGit()
+  //     break
+  //   default:
+  //     break
+  // }
 }
 
 // function createPkg (projectName = null) {

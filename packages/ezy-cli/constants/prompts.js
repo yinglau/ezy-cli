@@ -2,6 +2,7 @@ const inquirer = require('inquirer')
 
 const { createPath } = require('../tasks/createProject')
 const initProject = require('../tasks/initProject')
+const apptypes = require('./apptypes')
 
 function createPrompt (name, options) {
   return inquirer.prompt([
@@ -34,7 +35,7 @@ function initPrompt () {
       type: 'list',
       name: 'project_type',
       message: 'Choice you project type.',
-      choices: ['Web', 'Mobile-Native', 'Pc-Native']
+      choices: apptypes
     }
   ]).then(answers => {
     initProject(answers.project_type)
