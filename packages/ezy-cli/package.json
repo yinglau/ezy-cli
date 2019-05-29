@@ -1,6 +1,6 @@
 {
   "name": "ezy-cli",
-  "version": "1.0.27-alpha.0",
+  "version": "1.0.28-alpha.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,7 @@
     "ora": "^3.0.0",
     "shelljs": "^0.8.3"
   },
-  "gitHead": "934bef140b791079c6676053cf879eec2ca8e161",
+  "gitHead": "68a9318fd835616d781749f70c150ea7acbbc0a5",
   "keywords": [
     "react",
     "redux",
