@@ -2,6 +2,15 @@ const { execSync } = require('child_process')
 const chalk = require('chalk')
 const invariant = require('invariant')
 
+function canUse (execName) {
+  try {
+    execSync(`${execName} --version`, { stdio: 'ignore' })
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
 function canUseGit () {
   try {
     execSync('git --version', { stdio: 'ignore' })

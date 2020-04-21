@@ -1,3 +1,5 @@
 node_modules/
 START.md
 lerna-debug.log
+package-lock.json
+.DS_Store

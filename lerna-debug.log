@@ -1,122 +1,47 @@
-0 silly argv { _: [ 'publish' ],
-0 silly argv   composed: 'publish',
-0 silly argv   lernaVersion: '3.8.4',
-0 silly argv   '$0': '/usr/local/bin/lerna' }
-1 notice cli v3.8.4
-2 verbose rootPath /Users/ying/Documents/learn/ezy
-3 info versioning independent
-4 verbose session fbd1e54871ef7b05
-5 verbose user-agent lerna/3.8.4/node@v10.13.0+x64 (darwin)
-6 silly argv { _: [ 'publish' ], composed: 'publish', lernaVersion: '3.8.4' }
-7 verbose rootPath /Users/ying/Documents/learn/ezy
-8 silly isAnythingCommitted
-9 verbose isAnythingCommitted 1
-10 silly currentBranch
-11 verbose currentBranch master
-12 silly remoteBranchExists
-13 silly isBehindUpstream
-14 silly isBehindUpstream master is behind origin/master by 0 commit(s) and ahead by 1
-15 silly hasTags
-16 verbose hasTags true
-17 silly git-describe.sync "ezy-cli@1.0.22-alpha.0-1-ga582d31" => {"lastTagName":"ezy-cli@1.0.22-alpha.0","lastVersion":"1.0.22-alpha.0","refCount":"1","sha":"a582d31","isDirty":false}
-18 info Looking for changed packages since ezy-cli@1.0.22-alpha.0
-19 verbose updated ezy-cli
-20 verbose updated ezy-scripts
-21 verbose git-describe undefined => "ezy-cli@1.0.22-alpha.0-1-ga582d31"
-22 silly git-describe parsed => {"lastTagName":"ezy-cli@1.0.22-alpha.0","lastVersion":"1.0.22-alpha.0","refCount":"1","sha":"a582d31","isDirty":false}
-23 silly batched [ PackageGraphNode {
-23 silly batched     name: 'ezy-cli',
-23 silly batched     externalDependencies:
-23 silly batched      Map {
-23 silly batched        'chalk' => [Object],
-23 silly batched        'commander' => [Object],
-23 silly batched        'cross-spawn' => [Object],
-23 silly batched        'ejs' => [Object],
-23 silly batched        'inquirer' => [Object],
-23 silly batched        'invariant' => [Object],
-23 silly batched        'ora' => [Object],
-23 silly batched        'shelljs' => [Object] },
-23 silly batched     localDependencies: Map {},
-23 silly batched     localDependents: Map {} },
-23 silly batched   PackageGraphNode {
-23 silly batched     name: 'ezy-scripts',
-23 silly batched     externalDependencies: Map {},
-23 silly batched     localDependencies: Map {},
-23 silly batched     localDependents: Map {} } ]
-24 silly lifecycle No script for "preversion" in "root", continuing
-25 silly lifecycle No script for "preversion" in "ezy-cli", continuing
-26 silly lifecycle No script for "preversion" in "ezy-scripts", continuing
-27 silly lifecycle No script for "version" in "ezy-scripts", continuing
-28 silly lifecycle No script for "version" in "ezy-cli", continuing
-29 silly lifecycle No script for "version" in "root", continuing
-30 silly gitAdd [ '/Users/ying/Documents/learn/ezy/packages/ezy-scripts/package.json',
-30 silly gitAdd   '/Users/ying/Documents/learn/ezy/packages/ezy-cli/package.json' ]
-31 silly gitCommit Publish
-31 silly gitCommit
-31 silly gitCommit  - ezy-cli@1.0.23-alpha.0
-31 silly gitCommit  - ezy-scripts@1.0.2-alpha.12
-32 verbose git [ 'commit',
-32 verbose git   '-F',
-32 verbose git   '/private/var/folders/9q/10w_bnzs24g2llqlyl7djb440000gn/T/ec50b125-6996-447b-8b88-b1305fa9ed83/lerna-commit.txt' ]
-33 silly gitTag ezy-cli@1.0.23-alpha.0
-34 verbose git [ 'tag',
-34 verbose git   'ezy-cli@1.0.23-alpha.0',
-34 verbose git   '-m',
-34 verbose git   'ezy-cli@1.0.23-alpha.0' ]
-35 silly gitTag ezy-scripts@1.0.2-alpha.12
-36 verbose git [ 'tag',
-36 verbose git   'ezy-scripts@1.0.2-alpha.12',
-36 verbose git   '-m',
-36 verbose git   'ezy-scripts@1.0.2-alpha.12' ]
-37 silly lifecycle No script for "postversion" in "ezy-cli", continuing
-38 silly lifecycle No script for "postversion" in "ezy-scripts", continuing
-39 silly lifecycle No script for "postversion" in "root", continuing
-40 info git Pushing tags...
-41 silly gitPush origin master
-42 silly batched [ PackageGraphNode {
-42 silly batched     name: 'ezy-cli',
-42 silly batched     externalDependencies:
-42 silly batched      Map {
-42 silly batched        'chalk' => [Object],
-42 silly batched        'commander' => [Object],
-42 silly batched        'cross-spawn' => [Object],
-42 silly batched        'ejs' => [Object],
-42 silly batched        'inquirer' => [Object],
-42 silly batched        'invariant' => [Object],
-42 silly batched        'ora' => [Object],
-42 silly batched        'shelljs' => [Object] },
-42 silly batched     localDependencies: Map {},
-42 silly batched     localDependents: Map {} },
-42 silly batched   PackageGraphNode {
-42 silly batched     name: 'ezy-scripts',
-42 silly batched     externalDependencies: Map {},
-42 silly batched     localDependencies: Map {},
-42 silly batched     localDependents: Map {} } ]
-43 info publish Publishing packages to npm...
-44 notice Skipping all user and access validation due to third-party registry
-45 notice Make sure you're authenticated properly ¯\_(ツ)_/¯
-46 warn ENOLICENSE Packages ezy-cli, ezy-scripts are missing a license
-47 silly getCurrentSHA
-48 verbose getCurrentSHA 934bef140b791079c6676053cf879eec2ca8e161
-49 silly lifecycle No script for "prepublish" in "root", continuing
-50 silly lifecycle No script for "prepare" in "root", continuing
-51 silly lifecycle No script for "prepublishOnly" in "root", continuing
-52 silly lifecycle No script for "prepack" in "root", continuing
-53 verbose pack-directory packages/ezy-cli
-54 verbose pack-directory packages/ezy-scripts
-55 silly lifecycle No script for "prepublish" in "ezy-cli", continuing
-56 silly lifecycle No script for "prepublish" in "ezy-scripts", continuing
-57 silly lifecycle No script for "prepare" in "ezy-cli", continuing
-58 silly lifecycle No script for "prepare" in "ezy-scripts", continuing
-59 silly lifecycle No script for "prepublishOnly" in "ezy-cli", continuing
-60 silly lifecycle No script for "prepublishOnly" in "ezy-scripts", continuing
-61 silly lifecycle No script for "prepack" in "ezy-cli", continuing
-62 silly lifecycle No script for "prepack" in "ezy-scripts", continuing
-63 silly lifecycle No script for "postpack" in "ezy-scripts", continuing
-64 silly lifecycle No script for "postpack" in "ezy-cli", continuing
-65 silly lifecycle No script for "postpack" in "root", continuing
-66 verbose publish ezy-cli
-67 verbose publish ezy-scripts
-68 http fetch PUT 401 https://registry.npm.taobao.org/ezy-cli 440ms
-69 error Error: 401 Unauthorized - PUT https://registry.npm.taobao.org/ezy-cli - unauthorized
-69 error     at res.buffer.catch.then.body (/Users/ying/Documents/learn/ezy/node_modules/npm-registry-fetch/check-response.js:104:15)
+28 error Error: Command failed: git
+28 error
+28 error usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
+28 error            [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+28 error            [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
+28 error            [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+28 error            <command> [<args>]
+28 error
+28 error These are common Git commands used in various situations:
+28 error
+28 error start a working area (see also: git help tutorial)
+28 error    clone      Clone a repository into a new directory
+28 error    init       Create an empty Git repository or reinitialize an existing one
+28 error
+28 error work on the current change (see also: git help everyday)
+28 error    add        Add file contents to the index
+28 error    mv         Move or rename a file, a directory, or a symlink
+28 error    reset      Reset current HEAD to the specified state
+28 error    rm         Remove files from the working tree and from the index
+28 error
+28 error examine the history and state (see also: git help revisions)
+28 error    bisect     Use binary search to find the commit that introduced a bug
+28 error    grep       Print lines matching a pattern
+28 error    log        Show commit logs
+28 error    show       Show various types of objects
+28 error    status     Show the working tree status
+28 error
+28 error grow, mark and tweak your common history
+28 error    branch     List, create, or delete branches
+28 error    checkout    Switch branches or restore working tree files
+28 error    commit     Record changes to the repository
+28 error    diff       Show changes between commits, commit and working tree, etc
+28 error    merge      Join two or more development histories together
+28 error    rebase     Reapply commits on top of another base tip
+28 error    tag        Create, list, delete or verify a tag object signed with GPG
+28 error
+28 error collaborate (see also: git help workflows)
+28 error    fetch      Download objects and refs from another repository
+28 error    pull       Fetch from and integrate with another repository or a local branch
+28 error    push       Update remote refs along with associated objects
+28 error
+28 error 'git help -a' and 'git help -g' list available subcommands and some
+28 error concept guides. See 'git help <command>' or 'git help <concept>'
+28 error to read about a specific subcommand or concept.
+28 error
+28 error     at makeError (/Users/hui/Documents/project/github/ezy/node_modules/execa/index.js:174:9)
+28 error     at Promise.all.then.arr (/Users/hui/Documents/project/github/ezy/node_modules/execa/index.js:278:16)

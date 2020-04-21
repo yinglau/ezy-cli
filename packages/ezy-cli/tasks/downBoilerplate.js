@@ -7,7 +7,7 @@ const fs = require('fs')
 const chalk = require('chalk')
 const invariant = require('invariant')
 
-const { checkGit, checkNpm } = require('../utils/checkEnv')
+const { checkGit, checkNpm, canUse } = require('../utils/checkEnv')
 const BOILERPLATE = require('../constants/boilerplate')
 
 async function downBoilerplateFromGit () {
@@ -44,7 +44,7 @@ function cloneRepos () {
         shell.rm('-rf', path.join(process.cwd(), `${BOILERPLATE[projType].name}`))
         downBoilerplateSpiner.fail()
         error(err)
-        reject(err)
+        // reject(err)
       } else {
         shell.mv(path.join(process.cwd(), `${BOILERPLATE[projType].name}`, '*'), './')
         shell.rm('-rf', path.join(process.cwd(), `${BOILERPLATE[projType].name}`))
@@ -57,9 +57,10 @@ function cloneRepos () {
 
 function installDependenices () {
   checkExistsPackage()
+
   const installDependenicesSpiner = ora('install the project dependencies...').start()
   return new Promise((resolve, reject) => {
-    exec('npm install', err => {
+    exec('npm install --registry https://registry.npm.taobao.org', err => {
       if (err) {
         shell.rm('-rf', path.join(process.cwd(), 'node_modules'))
         installDependenicesSpiner.fail()

@@ -16,7 +16,7 @@ function createPrompt (name, options) {
           return 'Please type the project name.'
         }
         if (!/^[a-zA-Z0-9]+$/.test(value)) {
-          return 'example: nameName8'
+          return 'example: projectname1'
         }
         return true
       }
