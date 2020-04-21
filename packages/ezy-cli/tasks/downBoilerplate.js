@@ -56,6 +56,7 @@ function cloneRepos () {
 }
 
 function installDependenices () {
+  // test
   checkExistsPackage()
 
   const installDependenicesSpiner = ora('install the project dependencies...').start()
